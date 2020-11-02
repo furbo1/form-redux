@@ -1,9 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Route, Link } from "react-router-dom"
 import './App.css';
-import Header from './components/Header/Header'
-import Contact from './components/Contact/Contact'
-import About from './components/About/About'
+// import Header from './components/Header/Header'
+// import Contact from './components/Contact/Contact'
+// import About from './components/About/About'
+import store from '../src/store/store'
 
 
 class App extends React.Component {
@@ -25,6 +26,14 @@ class App extends React.Component {
       lname: e.target.value
     })
   }
+
+  submitForm = (e) =>{
+    e.preventDefault()
+    store.dispatch({
+      type:"Login_Data",
+      payload: this.state
+    })
+  }
   
   
   
@@ -35,8 +44,9 @@ class App extends React.Component {
         <div>
           <input type='text' onChange={this.func}/>
           <input type='text' onChange={this.newFunc}/>
-          {this.state.name}
-          {this.state.lname}
+          {/* {this.state.name}
+          {this.state.lname} */}
+          <button onClick={this.submitForm}>Submit</button>
         </div>
         //  <BrowserRouter>
         //  <Route exact path='/' component={Header}/>
